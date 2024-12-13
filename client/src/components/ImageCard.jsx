@@ -5,7 +5,6 @@ import { Avatar } from "@mui/material";
 import { DownloadRounded } from "@mui/icons-material";
 import FileSaver from "file-saver";
 
-
 const Card = styled.div`
   position: relative;
   display: flex;
@@ -60,10 +59,12 @@ const Author = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
-const ImageCard = ({item}) => {
+const ImageCard = ({ item }) => {
   return (
     <Card>
       <LazyLoadImage
+        alt={item?.prompt}
+        style={{ borderRadius: "12px" }}
         width="100%"
         src={item?.photo}
       />
@@ -77,14 +78,14 @@ const ImageCard = ({item}) => {
             justifyContent: "space-between",
           }}
         >
-        <Author>
-          <Avatar sx={{ width: "32px", height: "32px" }}>M</Avatar>
-          {item?.author}
-        </Author>
-        <DownloadRounded
+          <Author>
+            <Avatar sx={{ width: "32px", height: "32px" }}>M</Avatar>
+            {item?.author}
+          </Author>
+          <DownloadRounded
             onClick={() => FileSaver.saveAs(item?.photo, "download.jpg")}
           />
-             </div>
+        </div>
       </HoverOverlay>
     </Card>
   );
